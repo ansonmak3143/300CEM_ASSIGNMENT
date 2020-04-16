@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_order"
+        android:icon="@drawable/order"
+        android:title="@string/bar_order" />
+
+    <item
+        android:id="@+id/navigation_pickOrder"
+        android:icon="@drawable/pickorder"
+        android:title="@string/bar_takeorder" />
+
+    <item
+        android:id="@+id/navigation_viewOrder"
+        android:icon="@drawable/vieworder"
+        android:title="@string/bar_vieworder" />
+
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/user"
+        android:title="@string/bar_user" />
+</menu>
