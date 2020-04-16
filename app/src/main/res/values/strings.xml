@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">300CEM_ASSIGNMENT</string>
+    <string name="app_name">NeigHelpIng</string>
+    <string name="bar_order">Order</string>
+    <string name="bar_takeorder">TakeOrder</string>
+    <string name="bar_vieworder">ViewOrder</string>
+    <string name="bar_user">User</string>
 </resources>
