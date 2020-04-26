@@ -6,12 +6,8 @@
     tools:context=".OrderFragment"
     >
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:src="@drawable/vieworder"
-        />
+    <ListView
+        android:id="@+id/listHistoryListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </FrameLayout>
