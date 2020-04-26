@@ -4,4 +4,21 @@
     <string name="bar_takeorder">TakeOrder</string>
     <string name="bar_vieworder">ViewOrder</string>
     <string name="bar_user">User</string>
+    <string name="registerTitle">Register As Member</string>
+    <string name="registerName">Name: </string>
+    <string name="registerNameHints">Enter a name for how to call you~</string>
+    <string name="registerPhone">Phone: </string>
+    <string name="registerPhoneHints">Enter a phone number to contact you~</string>
+    <string name="registerSubmit">Submit</string>
+    <string name="welcomeUser">Hello~</string>
+    <string name="userPhoneNumber">Your Number: </string>
+    <string name="userInforEdit">Edit</string>
+    <string name="pick_order_list_item_icon">pick order list item icon</string>
+    <string name="orderItemName">order item name</string>
+    <string name="orderArea">order Area</string>
+    <string name="orderDistance">order Distance</string>
+    <string name="ordererName">orderer Name</string>
+    <string name="view_order_list_item_icon">view order list item icon</string>
+    <string name="orderProcess">order Process State</string>
+    <string name="orderPicker">order Picker Name</string>
 </resources>

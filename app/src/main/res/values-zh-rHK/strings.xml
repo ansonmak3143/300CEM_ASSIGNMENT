@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">鄰住幫</string>
+    <string name="bar_order">落單</string>
+    <string name="bar_takeorder">接單</string>
+    <string name="bar_vieworder">查單</string>
+    <string name="bar_user">用戶</string>
+    <string name="registerTitle">登記做用戶</string>
+    <string name="registerName">名稱: </string>
+    <string name="registerNameHints">輸入一個名稱來讓大家認識您~</string>
+    <string name="registerPhone">電話號碼: </string>
+    <string name="registerPhoneHints">輸入一個電話號碼, 讓想幫助您的人可以找到您~</string>
+    <string name="registerSubmit">提交</string>
+    <string name="welcomeUser">歡迎~</string>
+    <string name="userPhoneNumber">您的號碼: </string>
+    <string name="userInforEdit">編輯</string>
+    <string name="pick_order_list_item_icon">接單單頭像</string>
+    <string name="orderItemName">單貨品名稱</string>
+    <string name="orderArea">地區</string>
+    <string name="orderDistance">相距</string>
+    <string name="ordererName">落單者名稱</string>
+    <string name="view_order_list_item_icon">看單單頭像</string>
+    <string name="orderProcess">處理狀態</string>
+    <string name="orderPicker">接單員名稱</string>
+</resources>
