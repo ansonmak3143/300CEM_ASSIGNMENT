@@ -22,4 +22,21 @@
     <string name="view_order_list_item_icon">看單單頭像</string>
     <string name="orderProcess">處理狀態</string>
     <string name="orderPicker">接單員名稱</string>
+    <string name="image_for_order">單貨品的相片</string>
+    <string name="camera_icon">影相按鈕</string>
+    <string name="take_a_picture_of_the_goods">為您想要的貨品影張相吧!</string>
+    <string name="room">室</string>
+    <string name="delivery_room_number">送貨的房號</string>
+    <string name="flat">樓層</string>
+    <string name="delivery_floor">送貨的樓層</string>
+    <string name="building">樓宇</string>
+    <string name="delivery_building">送貨的樓宇</string>
+    <string name="estate">屋苑</string>
+    <string name="delivery_estate">送貨的屋苑</string>
+    <string name="area">地區</string>
+    <string name="h_k">香港</string>
+    <string name="k_l">九龍</string>
+    <string name="n_t">新界</string>
+    <string name="order_description">訂單詳情</string>
+    <string name="enter_some_description_for_your_order_e_g_price_range">給幫助您的人一些資訊吧. 例如: 價錢範圍…</string>
 </resources>
