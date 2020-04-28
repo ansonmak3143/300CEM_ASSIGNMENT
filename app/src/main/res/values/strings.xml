@@ -38,4 +38,9 @@
     <string name="n_t">N.T.</string>
     <string name="order_description">Order Description</string>
     <string name="enter_some_description_for_your_order_e_g_price_range">Enter some description for your order. E.g: price range…</string>
+    <string name="pick">Pick</string>
+    <string name="description_from_db">description from db</string>
+    <string name="picker_name">Picker Name</string>
+    <string name="picker_phone">Picker Phone</string>
+    <string name="contact_picker">Contact Picker</string>
 </resources>
