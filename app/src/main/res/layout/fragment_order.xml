@@ -171,7 +171,8 @@
             android:id="@+id/orderSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/registerSubmit" />
+            android:text="@string/registerSubmit"
+            android:background="?android:attr/selectableItemBackground" />
 
     </LinearLayout>
 
