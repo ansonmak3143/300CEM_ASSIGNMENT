@@ -44,4 +44,6 @@
     <string name="picker_name">接單員名稱</string>
     <string name="picker_phone">接單員號碼</string>
     <string name="contact_picker">聯絡接單員</string>
+    <string name="toastEmptyName">您沒有輸入您的名字</string>
+    <string name="toastEmptyPhone">您沒有輸入您的電話號碼</string>
 </resources>

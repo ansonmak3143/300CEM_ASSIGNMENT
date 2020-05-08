@@ -43,4 +43,6 @@
     <string name="picker_name">Picker Name</string>
     <string name="picker_phone">Picker Phone</string>
     <string name="contact_picker">Contact Picker</string>
+    <string name="toastEmptyName">You did not enter your name</string>
+    <string name="toastEmptyPhone">You did not enter your phone number</string>
 </resources>
