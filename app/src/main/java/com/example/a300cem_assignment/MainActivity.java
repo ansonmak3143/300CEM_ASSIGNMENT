@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         sharedPrefs = getSharedPreferences("userInfor", MODE_PRIVATE);
+        bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         if(!sharedPrefs.contains("initialized")){
             openFragment(RegisterFragment.newInstance());
         }else{
             String tmpUserName, tmpUserPhone;
             tmpUserName = sharedPrefs.getString("userName","Error");
             tmpUserPhone = sharedPrefs.getString("userPhone","999");
-            bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
             openFragment(OrderFragment.newInstance(tmpUserName, tmpUserPhone));
         }
     }
