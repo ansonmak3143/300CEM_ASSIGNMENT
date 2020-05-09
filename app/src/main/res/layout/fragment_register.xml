@@ -31,15 +31,12 @@
                 android:id="@+id/registerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/registerName" />
 
             <EditText
                 android:id="@+id/userInputRegisterName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
                 android:hint="@string/registerNameHints"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName" />
@@ -54,15 +51,12 @@
                 android:id="@+id/registerPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/registerPhone" />
 
             <EditText
                 android:id="@+id/userInputRegisterPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
                 android:hint="@string/registerPhoneHints"
                 android:importantForAutofill="no"
                 android:inputType="phone" />
