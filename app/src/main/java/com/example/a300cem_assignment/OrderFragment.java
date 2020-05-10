@@ -26,6 +26,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -33,22 +35,25 @@ import static android.app.Activity.RESULT_OK;
 public class OrderFragment extends Fragment implements View.OnClickListener{
     private String mCurrentPhotoPath = "";
     private ImageView recordImage;
-    private static String audioFileName = "";
+    private static String finalAudioFileName = "";
     private EditText recordTitleEtxt, recordDescriptionETxt;
     private Button recordAudioBtn;
     private static final int Image_Capture_Code = 1;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
-    private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
     private MediaRecorder recorder = null;
     private boolean mStartRecording = true;
     private Time today = new Time(Time.getCurrentTimezone());
     private DBHelper DH = null;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static final int REQUEST_CAMERA = 2;
+    private static final int REQUEST_RECORD_AUDIO = 3;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            Manifest.permission.RECORD_AUDIO
     };
-    static final int REQUEST_TAKE_PHOTO = 1;
+    private static final int REQUEST_TAKE_PHOTO = 1;
 
     public OrderFragment() {
     }
@@ -84,7 +89,7 @@ public class OrderFragment extends Fragment implements View.OnClickListener{
         orderSubmit.setOnClickListener(this);
         recordAudioBtn.setOnClickListener(this);
         openDB();
-        verifyStoragePermissions(getActivity());
+        verifyPermissions(getActivity());
         recordCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,16 +104,33 @@ public class OrderFragment extends Fragment implements View.OnClickListener{
         });
     }
 
-    private static void verifyStoragePermissions(Activity activity) {
+    private static void verifyPermissions(Activity activity) {
         // Check if we have write permission
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
+        int permission2 = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
+        int permission3 = ActivityCompat.checkSelfPermission(activity, Manifest.permission.RECORD_AUDIO);
         if (permission != PackageManager.PERMISSION_GRANTED) {
             // We don't have permission so prompt the user
             ActivityCompat.requestPermissions(
                     activity,
                     PERMISSIONS_STORAGE,
                     REQUEST_EXTERNAL_STORAGE
+            );
+        }
+        if (permission2 != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_CAMERA
+            );
+        }
+        if (permission3 != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_RECORD_AUDIO
             );
         }
     }
@@ -194,7 +216,7 @@ public class OrderFragment extends Fragment implements View.OnClickListener{
                 }else if(isEmptyString(recordDescriptionTmp)){
                     Toast.makeText(getActivity(), getString(R.string.toastEmptyDescription), Toast.LENGTH_SHORT).show();
                 }else{
-                    ro = new RecordObject(recordTitleTmp,recordDescriptionTmp, recordDate,audioFileName,mCurrentPhotoPath);
+                    ro = new RecordObject(recordTitleTmp,recordDescriptionTmp, recordDate,finalAudioFileName,mCurrentPhotoPath);
                     if(DH.insertRecord(ro)){
                         Toast.makeText(getActivity(), getString(R.string.toastEmptyRecordAdded), Toast.LENGTH_SHORT).show();
                         openFragment(ViewOrderFragment.newInstance());
@@ -205,54 +227,54 @@ public class OrderFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.recordAudioBtn:
                 today.setToNow();
-                audioFileName = getActivity().getExternalCacheDir().getAbsolutePath();
-                audioFileName += "/" + today.year + today.month +today.monthDay + today.format("%k%M%S") + "audioRecord.3gp";
-                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.RECORD_AUDIO)
-                        == PackageManager.PERMISSION_DENIED){
-                    ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.RECORD_AUDIO}, REQUEST_RECORD_AUDIO_PERMISSION);
-                    onRecord(mStartRecording);
-                    if (mStartRecording) {
-                        recordAudioBtn.setText(getString(R.string.stop_recording));
-                    } else {
-                        recordAudioBtn.setText(getString(R.string.start_recording));
-                    }
-                    mStartRecording = !mStartRecording;
-                }else {
-                    onRecord(mStartRecording);
-                    if (mStartRecording) {
-                        recordAudioBtn.setText(getString(R.string.stop_recording));
-                    } else {
-                        recordAudioBtn.setText(getString(R.string.start_recording));
-                    }
-                    mStartRecording = !mStartRecording;
+                String audioFileName = "/" + today.year + today.month + today.monthDay + today.format("%k%M%S").trim() + "audioRecord.3gp";
+                if (mStartRecording) {
+                    recordAudioBtn.setText(getString(R.string.stop_recording));
+                    recordAndSaveAudioFile(audioFileName);
+                } else {
+                    recordAudioBtn.setText(getString(R.string.start_recording));
+                    stopRecording();
                 }
+                mStartRecording = !mStartRecording;
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + v.getId());
         }
     }
 
-    private void onRecord(boolean start) {
-        if (start) {
-            startRecording();
-        } else {
-            stopRecording();
+    private void recordAndSaveAudioFile(String customizedName) {
+        String saved_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "Voice Recorder";
+        File destinationDirectory = new File(saved_path);
+        if (!destinationDirectory.exists()) {
+            destinationDirectory.mkdirs();
         }
+        File destinationFile = new File(destinationDirectory, customizedName);
+        finalAudioFileName = saved_path + "/" + customizedName;
+        try {
+            FileOutputStream outputStream = new FileOutputStream(destinationFile);
+            outputStream.flush();
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setupMediaRecorder(destinationFile);
+        try {
+            recorder.prepare();
+            recorder.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(getActivity(), getString(R.string.recording), Toast.LENGTH_SHORT).show();
     }
 
-    private void startRecording() {
+    private void setupMediaRecorder(File destination) {
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        recorder.setOutputFile(audioFileName);
-        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-        try {
-            recorder.prepare();
-        } catch (IOException e) {
-            Log.e("Record Audio", "prepare() failed");
-        }
-
-        recorder.start();
+        recorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+        recorder.setOutputFile(Uri.parse(String.valueOf(destination)).toString());
     }
 
     private void stopRecording() {

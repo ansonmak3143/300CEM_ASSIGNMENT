@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class UserFragment extends Fragment implements View.OnClickListener{
 
     private static final String ARG_PARAM1 = "userName";
-    private String userName, userPhone;
+    private String userName;
     private EditText userEditName;
     private TextView userNameTxt;
     private LinearLayout userEditInforLayout;
