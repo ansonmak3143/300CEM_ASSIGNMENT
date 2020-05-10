@@ -3,21 +3,23 @@ package com.example.a300cem_assignment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPrefs;
+    private  static FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        manager = getSupportFragmentManager();
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         sharedPrefs = getSharedPreferences("userInfor", MODE_PRIVATE);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
@@ -53,5 +55,9 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public static FragmentManager getManager(){
+        return manager;
     }
 }
