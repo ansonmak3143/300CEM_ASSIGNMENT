@@ -33,4 +33,5 @@
     <string name="start_playing">開始播放</string>
     <string name="stop_playing">停止播放</string>
     <string name="toastEmptyRecordAdded">記錄加入完成</string>
+    <string name="recording">錄製中…</string>
 </resources>
