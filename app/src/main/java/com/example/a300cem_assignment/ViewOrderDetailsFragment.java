@@ -83,7 +83,10 @@ public class ViewOrderDetailsFragment extends Fragment implements View.OnClickLi
         viewRecordTitleTxt.setText(title);
         viewRecordDateTxt.setText(date);
         viewRecordDescription.setText(description);
-        if(audioFileName.length() != 0) recordPlayAudioBtn.setOnClickListener(this);
+        if(audioFileName.length() != 0){
+            recordPlayAudioBtn.setOnClickListener(this);
+            recordPlayAudioBtn.setEnabled(true);
+        }
         if(photoPath.length() != 0){
             try {
                 Bitmap mImageBitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.parse(photoPath));

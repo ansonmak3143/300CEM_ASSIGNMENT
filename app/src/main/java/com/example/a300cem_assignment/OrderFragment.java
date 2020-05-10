@@ -1,6 +1,7 @@
 package com.example.a300cem_assignment;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.os.Environment;
@@ -41,6 +43,12 @@ public class OrderFragment extends Fragment implements View.OnClickListener{
     private boolean mStartRecording = true;
     private Time today = new Time(Time.getCurrentTimezone());
     private DBHelper DH = null;
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+    static final int REQUEST_TAKE_PHOTO = 1;
 
     public OrderFragment() {
     }
@@ -76,6 +84,7 @@ public class OrderFragment extends Fragment implements View.OnClickListener{
         orderSubmit.setOnClickListener(this);
         recordAudioBtn.setOnClickListener(this);
         openDB();
+        verifyStoragePermissions(getActivity());
         recordCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +97,20 @@ public class OrderFragment extends Fragment implements View.OnClickListener{
                 }
             }
         });
+    }
+
+    private static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 
     private void openDB(){
@@ -110,8 +133,14 @@ public class OrderFragment extends Fragment implements View.OnClickListener{
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                startActivityForResult(cameraIntent, Image_Capture_Code);
+                Uri photoURI = FileProvider.getUriForFile(getContext(),
+                        getContext().getApplicationContext().getPackageName() + ".provider",
+                        photoFile);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(cameraIntent, REQUEST_TAKE_PHOTO);
+
+                //cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+                //startActivityForResult(cameraIntent, Image_Capture_Code);
             }
         }
     }
