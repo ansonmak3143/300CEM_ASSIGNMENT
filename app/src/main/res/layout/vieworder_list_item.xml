@@ -5,10 +5,10 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/voListItem"
+        android:id="@+id/recordListItemImage"
         android:layout_width="60dp"
         android:layout_height="50dp"
-        android:contentDescription="@string/view_order_list_item_icon"
+        android:contentDescription="@string/record_list_item_image"
         app:srcCompat="@drawable/vieworder" />
 
     <LinearLayout
@@ -17,11 +17,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/viewItemName"
+            android:id="@+id/recordListTitleTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/orderItemName"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -30,21 +29,21 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/orderProcess"
+                android:id="@+id/recordListDateTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/orderProcess"
-                android:textColor="@android:color/holo_red_dark" />
+                android:gravity="center"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/orderPicker"
+                android:id="@+id/recordListAreaTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/orderPicker"
-                android:visibility="gone" />
-
+                android:gravity="center"
+                android:textSize="18sp" />
         </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

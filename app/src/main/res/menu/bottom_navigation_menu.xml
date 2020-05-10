@@ -6,11 +6,6 @@
         android:title="@string/bar_order" />
 
     <item
-        android:id="@+id/navigation_pickOrder"
-        android:icon="@drawable/pickorder"
-        android:title="@string/bar_takeorder" />
-
-    <item
         android:id="@+id/navigation_viewOrder"
         android:icon="@drawable/vieworder"
         android:title="@string/bar_vieworder" />

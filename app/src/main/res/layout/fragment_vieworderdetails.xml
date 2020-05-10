@@ -12,10 +12,10 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/orderViewDetailsImages"
+            android:id="@+id/recordViewDetailsImages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/image_for_order"
+            android:contentDescription="@string/image_for_record"
             app:srcCompat="@drawable/order" />
 
         <LinearLayout
@@ -24,27 +24,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/orderDetailsRoomTxt"
+                android:id="@+id/viewRecordTitleTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/room" />
+                android:layout_weight="2" />
 
             <TextView
-                android:id="@+id/orderDetailsRoomFromDB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/orderDetailsFlatTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/flat" />
-
-            <TextView
-                android:id="@+id/orderDetailsFlatFromDB"
+                android:id="@+id/viewRecordDateTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
@@ -56,149 +42,50 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/orderDetailsBuildingTxt"
+                android:id="@+id/viewRecordAreaTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/building" />
+                android:text="@string/record_area" />
 
             <TextView
-                android:id="@+id/orderDetailsBuildingFromDB"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/orderDetailsEstateTxt"
+                android:id="@+id/viewRecordAreaETxt"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/estate" />
-
-            <TextView
-                android:id="@+id/orderDetailsEstateFromDB"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/orderDetailsAreaTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/area" />
-
-            <TextView
-                android:id="@+id/orderDetailsAreaFromDB"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <EditText
-            android:id="@+id/orderDetailsDescriptionFromDB"
+            android:id="@+id/viewRecordDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:enabled="false"
             android:gravity="start|top"
-            android:hint="@string/description_from_db"
+            android:hint="@string/view_record_description"
             android:importantForAutofill="no"
             android:inputType="textMultiLine" />
 
         <LinearLayout
-            android:id="@+id/orderPickerInforArea"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/pickerInforNameTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/picker_name" />
-
-                <TextView
-                    android:id="@+id/pickerInforNameFromDB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/pickerInforPhoneTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/picker_phone" />
-
-                <TextView
-                    android:id="@+id/pickerInforPhoneFromDB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/contactPickerButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/contact_picker"
-                android:background="?android:attr/selectableItemBackground" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/buttonGroupForPicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/cancelOrderButtonForPicker"
+                android:id="@+id/viewRecordCancelBtn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="@android:string/cancel"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/pickOrderButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="@string/pick" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/buttonGroupForOrderer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <Button
-                android:id="@+id/cancelOrderButtonForOrderer"
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackground"
                 android:text="@android:string/cancel" />
+
+            <ImageButton
+                android:id="@+id/viewRecordAudioBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="@string/view_record_audio_btn"
+                android:src="@android:drawable/presence_audio_online" />
+
         </LinearLayout>
 
     </LinearLayout>
