@@ -18,7 +18,7 @@
             <ImageView
                 android:id="@+id/recordImage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="210dp"
                 android:contentDescription="@string/image_for_record"
                 android:src="@drawable/order"
                 android:visibility="visible" />
