@@ -73,7 +73,7 @@
                 android:id="@+id/recordDescriptionTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/record_dexcription"
+                android:text="@string/record_description"
                 android:textSize="24sp" />
 
             <EditText
@@ -96,16 +96,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:layout_weight="2"
                     android:gravity="center"
                     android:text="@string/leave_some_voice_for_what_you_want_to_record"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
 
-                <ImageButton
+                <Button
                     android:id="@+id/recordAudioBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/record_audio_button"
-                    android:src="@android:drawable/presence_audio_online" />
+                    android:layout_weight="1"
+                    android:text="@string/start_recording" />
+
             </LinearLayout>
 
             <Button
