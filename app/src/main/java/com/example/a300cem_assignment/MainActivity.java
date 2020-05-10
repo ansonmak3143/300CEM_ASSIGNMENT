@@ -1,13 +1,10 @@
 package com.example.a300cem_assignment;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -17,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPrefs;
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,31 +24,26 @@ public class MainActivity extends AppCompatActivity {
         if(!sharedPrefs.contains("initialized")){
             openFragment(RegisterFragment.newInstance());
         }else{
-            String tmpUserName, tmpUserPhone;
+            String tmpUserName;
             tmpUserName = sharedPrefs.getString("userName","Error");
-            tmpUserPhone = sharedPrefs.getString("userPhone","999");
-            openFragment(OrderFragment.newInstance(tmpUserName, tmpUserPhone));
+            openFragment(OrderFragment.newInstance(tmpUserName));
         }
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    String tmpUserName, tmpUserPhone;
+                    String tmpUserName;
                     tmpUserName = sharedPrefs.getString("userName","Error");
-                    tmpUserPhone = sharedPrefs.getString("userPhone","999");
                     switch (item.getItemId()) {
                         case R.id.navigation_order:
-                            openFragment(OrderFragment.newInstance(tmpUserName, tmpUserPhone));
-                            return true;
-                        case R.id.navigation_pickOrder:
-                            openFragment(PickOrderFragment.newInstance());
+                            openFragment(OrderFragment.newInstance(tmpUserName));
                             return true;
                         case R.id.navigation_viewOrder:
                             openFragment(ViewOrderFragment.newInstance());
                             return true;
                         case R.id.navigation_user:
-                            openFragment(UserFragment.newInstance(tmpUserName, tmpUserPhone));
+                            openFragment(UserFragment.newInstance(tmpUserName));
                             return true;
                     }
                     return false;

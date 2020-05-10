@@ -16,10 +16,9 @@ import android.widget.Toast;
 public class UserFragment extends Fragment implements View.OnClickListener{
 
     private static final String ARG_PARAM1 = "userName";
-    private static final String ARG_PARAM2 = "userPhone";
     private String userName, userPhone;
-    private EditText userEditName, userEditPhone;
-    private TextView userNameTxt, userPhoneTxt;
+    private EditText userEditName;
+    private TextView userNameTxt;
     private LinearLayout userEditInforLayout;
     private SharedPreferences sharedPrefs;
     private  Button submit,cancel,edit;
@@ -28,11 +27,10 @@ public class UserFragment extends Fragment implements View.OnClickListener{
     public UserFragment() {
     }
 
-    static UserFragment newInstance(String param1, String param2) {
+    static UserFragment newInstance(String param1) {
         UserFragment fragment = new UserFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,7 +40,6 @@ public class UserFragment extends Fragment implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             userName = getArguments().getString(ARG_PARAM1);
-            userPhone = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -51,38 +48,31 @@ public class UserFragment extends Fragment implements View.OnClickListener{
         super.onViewCreated(view, savedInstanceState);
         sharedPrefs = getActivity().getSharedPreferences("userInfor", Context.MODE_PRIVATE);
         userNameTxt = view.findViewById(R.id.userNameTxt);
-        userPhoneTxt = view.findViewById(R.id.userPhoneTxt);
         userEditName = view.findViewById(R.id.userInputEditName);
-        userEditPhone = view.findViewById(R.id.userInputEditPhone);
         submit = view.findViewById(R.id.userEditInforSubmitBtn);
         cancel = view.findViewById(R.id.userInforCancel);
         edit = view.findViewById(R.id.userInforEdit);
         userEditInforLayout = view.findViewById(R.id.userEditInforLayout);
         userNameTxt.setText(userName);
-        userPhoneTxt.setText(userPhone);
         submit.setOnClickListener(this);
         cancel.setOnClickListener(this);
         edit.setOnClickListener(this);
     }
 
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.userEditInforSubmitBtn:
                 SharedPreferences.Editor editer = sharedPrefs.edit();
                 String tmpUserName, tmpUserPhone;
                 tmpUserName = userEditName.getText().toString().trim();
-                tmpUserPhone = userEditPhone.getText().toString().trim();
                 if (isEmptyString(tmpUserName)) {
                     Toast.makeText(getActivity(), getString(R.string.toastEmptyName), Toast.LENGTH_SHORT).show();
-                } else if (isEmptyString(tmpUserPhone)) {
-                    Toast.makeText(getActivity(), getString(R.string.toastEmptyPhone), Toast.LENGTH_SHORT).show();
                 } else {
                     editer.putString("userName", tmpUserName);
-                    editer.putString("userPhone", tmpUserPhone);
                     editer.putBoolean("initialized", true);
                     editer.apply();
                     userNameTxt.setText(tmpUserName);
-                    userPhoneTxt.setText(tmpUserPhone);
                     cancel.setVisibility(View.GONE);
                     submit.setVisibility(View.GONE);
                     userEditInforLayout.setVisibility(View.GONE);

@@ -17,7 +17,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
     private SharedPreferences sharedPrefs;
     private Button regBtn;
     private EditText userName;
-    private EditText userPhone;
 
     public RegisterFragment() {
     }
@@ -37,7 +36,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
         sharedPrefs = getActivity().getSharedPreferences("userInfor", Context.MODE_PRIVATE);
         regBtn = view.findViewById(R.id.registerSubmit);
         userName = view.findViewById(R.id.userInputRegisterName);
-        userPhone = view.findViewById(R.id.userInputRegisterPhone);
         regBtn.setOnClickListener(this);
     }
 
@@ -47,19 +45,15 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
             throw new IllegalStateException("Unexpected value: " + v.getId());
         } else {
             SharedPreferences.Editor edit = sharedPrefs.edit();
-            String tmpUserName, tmpUserPhone;
+            String tmpUserName;
             tmpUserName = userName.getText().toString().trim();
-            tmpUserPhone = userPhone.getText().toString().trim();
             if (isEmptyString(tmpUserName)) {
                 Toast.makeText(getActivity(), getString(R.string.toastEmptyName), Toast.LENGTH_SHORT).show();
-            } else if (isEmptyString(tmpUserPhone)) {
-                Toast.makeText(getActivity(), getString(R.string.toastEmptyPhone), Toast.LENGTH_SHORT).show();
             } else {
                 edit.putString("userName", tmpUserName);
-                edit.putString("userPhone", tmpUserPhone);
                 edit.putBoolean("initialized", true);
                 edit.apply();
-                openFragment(OrderFragment.newInstance(tmpUserName, tmpUserPhone));
+                openFragment(OrderFragment.newInstance(tmpUserName));
             }
         }
     }
