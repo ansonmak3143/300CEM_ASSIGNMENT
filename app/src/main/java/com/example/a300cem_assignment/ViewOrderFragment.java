@@ -33,7 +33,7 @@ public class ViewOrderFragment extends Fragment {
         final ListView list = view.findViewById(R.id.listHistoryListView);
         ArrayList<RecordObject> arrayList = DH.getAllRecord();
         CustomAdapter customAdapter = new CustomAdapter(getContext(), arrayList);
-        list.setAdapter(customAdapter);
+        if(!arrayList.isEmpty()) list.setAdapter(customAdapter);
     }
 
     @Override
