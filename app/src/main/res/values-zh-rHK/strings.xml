@@ -18,7 +18,7 @@
     <string name="record_list_item_image">日記記錄清單項目頭像</string>
     <string name="image_for_record">記錄下的照片</string>
     <string name="enter_some_you_want_to_record_or_share">留下一些您想記錄或分享的事吧</string>
-    <string name="record_dexcription">記錄描述</string>
+    <string name="record_description">記錄描述</string>
     <string name="title">標題</string>
     <string name="add_some_title">為記錄加入一些標題</string>
     <string name="record_audio_button">錄音按鈕</string>
@@ -26,4 +26,11 @@
     <string name="view_record_description">記錄中的描述</string>
     <string name="view_record_audio_btn">播放記錄語音按鈕</string>
     <string name="record_area">記錄時的地點</string>
+    <string name="toastEmptyTitle">您沒有為要記錄的事輸入標題</string>
+    <string name="toastEmptyDescription">為您要記錄的事寫下一些句字吧~</string>
+    <string name="start_recording">開始錄製</string>
+    <string name="stop_recording">停止錄製</string>
+    <string name="start_playing">開始播放</string>
+    <string name="stop_playing">停止播放</string>
+    <string name="toastEmptyRecordAdded">記錄加入完成</string>
 </resources>

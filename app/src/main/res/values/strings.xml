@@ -17,7 +17,7 @@
     <string name="record_list_item_image">record list item image</string>
     <string name="image_for_record">image for record</string>
     <string name="enter_some_you_want_to_record_or_share">Enter some you want to record or share</string>
-    <string name="record_dexcription">record Dexcription</string>
+    <string name="record_description">record Description</string>
     <string name="title">Title</string>
     <string name="add_some_title">add some title</string>
     <string name="record_audio_button">record audio button</string>
@@ -25,4 +25,11 @@
     <string name="view_record_description">view Record Description</string>
     <string name="view_record_audio_btn">view Record Audio Btn</string>
     <string name="record_area">Recording Area</string>
+    <string name="toastEmptyTitle">You did not enter the title</string>
+    <string name="toastEmptyDescription">You did not enter any descriptiopn</string>
+    <string name="start_recording">Start recording</string>
+    <string name="stop_recording">Stop recording</string>
+    <string name="start_playing">Start playing</string>
+    <string name="stop_playing">Stop playing</string>
+    <string name="toastEmptyRecordAdded">The record has been added.</string>
 </resources>
