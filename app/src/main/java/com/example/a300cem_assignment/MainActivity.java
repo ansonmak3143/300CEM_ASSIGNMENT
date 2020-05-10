@@ -24,9 +24,7 @@ public class MainActivity extends AppCompatActivity {
         if(!sharedPrefs.contains("initialized")){
             openFragment(RegisterFragment.newInstance());
         }else{
-            String tmpUserName;
-            tmpUserName = sharedPrefs.getString("userName","Error");
-            openFragment(OrderFragment.newInstance(tmpUserName));
+            openFragment(OrderFragment.newInstance());
         }
     }
 
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     tmpUserName = sharedPrefs.getString("userName","Error");
                     switch (item.getItemId()) {
                         case R.id.navigation_order:
-                            openFragment(OrderFragment.newInstance(tmpUserName));
+                            openFragment(OrderFragment.newInstance());
                             return true;
                         case R.id.navigation_viewOrder:
                             openFragment(ViewOrderFragment.newInstance());

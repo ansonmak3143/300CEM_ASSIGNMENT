@@ -15,7 +15,6 @@ package com.example.a300cem_assignment;
 public class RegisterFragment extends Fragment implements View.OnClickListener{
 
     private SharedPreferences sharedPrefs;
-    private Button regBtn;
     private EditText userName;
 
     public RegisterFragment() {
@@ -34,7 +33,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         sharedPrefs = getActivity().getSharedPreferences("userInfor", Context.MODE_PRIVATE);
-        regBtn = view.findViewById(R.id.registerSubmit);
+        Button regBtn = view.findViewById(R.id.registerSubmit);
         userName = view.findViewById(R.id.userInputRegisterName);
         regBtn.setOnClickListener(this);
     }
@@ -53,7 +52,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
                 edit.putString("userName", tmpUserName);
                 edit.putBoolean("initialized", true);
                 edit.apply();
-                openFragment(OrderFragment.newInstance(tmpUserName));
+                openFragment(OrderFragment.newInstance());
             }
         }
     }
